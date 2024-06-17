@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "prote-io"
+version = "0.1.0"
+description = ""
+authors = ["lenafiedor <lenafiedor@o2.pl>"]
+readme = "README.md"
+packages = [{include = "prote"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pygame = "^2.5.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
