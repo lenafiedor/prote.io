@@ -27,4 +27,7 @@ This game has a built-in function used for monitoring CPU usage over the time. I
 Exemplary results:
 ![Very nice CPU plot](plots/cpu_usage.png)
 
+## Bonus: actual time disposal
+![Time disposal](plots/actual_time_disposal.png)
+
 ## Have fun creating your own peptide! :shipit:
