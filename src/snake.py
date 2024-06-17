@@ -1,8 +1,10 @@
 import pygame
 import copy
 import os
+import os
 from direction import Direction
 from segment import Segment
+from main import MAIN_DIR
 from main import MAIN_DIR
 
 
@@ -34,6 +36,7 @@ class Snake(pygame.sprite.Sprite):
 
         self.original_image = pygame.image.load(os.path.join(MAIN_DIR, '../images/head.png'))
         self.image = pygame.transform.rotate(self.original_image, 0)
+        self.rect = self.image.get_rect(center=(12*32+16, 9*32+16))
         self.rect = self.image.get_rect(center=(12*32+16, 9*32+16))
         self.direction = Direction.UP
         self.new_direction = Direction.UP

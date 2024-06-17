@@ -2,6 +2,8 @@ import pygame
 import copy
 import os
 from main import MAIN_DIR
+import os
+from main import MAIN_DIR
 
 
 class Segment(pygame.sprite.Sprite):
@@ -17,23 +19,39 @@ class Segment(pygame.sprite.Sprite):
 
     def __init__(self):
 
-        """
+        '''
         Initializes a new Segment instance with a default position and loads its image.
-        """
+        '''
+        
+
+        '''
+        Initializes a new Segment instance with a default position and loads its image.
+        '''
         
         super().__init__()
+        self.image = pygame.image.load(os.path.join(MAIN_DIR, '/../images/segment.png'))
+        self.position = pygame.Rect(-32, -32, 32, 32) # default off-screen position
         self.image = pygame.image.load(os.path.join(MAIN_DIR, '/../images/segment.png'))
         self.position = pygame.Rect(-32, -32, 32, 32) # default off-screen position
         self.last_position = None
 
     def move(self, new_position: pygame.Rect):
 
-        """
+        '''
         Moves the segment to a new position.
         
         Args:
             new_position (pygame.Rect): The new position to move the segment to.
-        """
+        '''
+
+    def move(self, new_position: pygame.Rect):
+
+        '''
+        Moves the segment to a new position.
+        
+        Args:
+            new_position (pygame.Rect): The new position to move the segment to.
+        '''
 
         self.last_position = copy.deepcopy(self.position)
         self.position = copy.deepcopy(new_position)
