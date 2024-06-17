@@ -7,6 +7,24 @@ from direction import Direction
 from snake import Snake
 
 
+def display_peptide_sequence(screen: pygame.Surface, font: pygame.font.Font, sequence: list):
+
+    '''
+    Display the peptide sequence on the screen.
+
+    Parameters:
+        screen (pygame.Surface): The screen to display the sequence on.
+        font (pygame.font.Font): The font to use for displaying the sequence.
+        sequence (list): The list of collected amino acids.
+    '''
+
+    peptide = '-'.join(sequence)
+    peptide_text = f'Created peptide: {peptide}'
+    peptide_rendered = font.render(peptide_text, False, (0, 0, 0))
+    peptide_rect = peptide_rendered.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+100))
+    screen.blit(peptide_rendered, peptide_rect)
+
+
 # set the working directory to the current script directory
 MAIN_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -22,7 +40,7 @@ pygame.display.set_caption('Prote.io')
 # fill the background with slightly modified tiles to create a pattern
 for i in range(25):
     for j in range(19):
-        img = pygame.image.load(os.path.join(MAIN_DIR, '/../images/background.png'))
+        img = pygame.image.load(f'{MAIN_DIR}/../images/background.png')
         mask = (random.randrange(0, 20), random.randrange(0, 20), random.randrange(0, 20))
         
         img.fill(mask, special_flags=pygame.BLEND_ADD)
@@ -73,7 +91,7 @@ while game_status:
     collision = pygame.sprite.spritecollideany(snake, aminos)
     if collision != None:
         collision.kill()
-        snake.add_amino()
+        snake.add_amino(collision.name)
         amino = Aminoacid()
         aminos.add(amino)
         points += 1
@@ -92,7 +110,8 @@ while game_status:
     # check for collision with the snake's body or the screen borders
     if snake.check_collision():
         lost_text = my_font.render('You\'ve lost!', False, (0, 0, 0))
-        screen.blit(lost_text, (SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2))
+        screen.blit(lost_text, lost_text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2)))
+        display_peptide_sequence(screen, my_font, snake.collected_aminos)
         game_status = False
     
     # update the display and regulate the frame rate to 30 FPS (delays the program if a loop runs faster)
@@ -100,5 +119,5 @@ while game_status:
     clock.tick(30)
 
 # wait a few seconds before closing the game window
-time.sleep(3)
+time.sleep(5)
 pygame.quit()

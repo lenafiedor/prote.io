@@ -4,10 +4,9 @@ import os
 import os
 from direction import Direction
 from segment import Segment
-from main import MAIN_DIR
-from main import MAIN_DIR
 
 
+MAIN_DIR = os.path.dirname(os.path.realpath(__file__))
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 608
 
@@ -26,6 +25,7 @@ class Snake(pygame.sprite.Sprite):
         last_position (pygame.Rect): The last position of the snake's head.
         add_segment (bool): Flag indicating whether to add a new segment.
         segments (list): List of segments representing the snake's body.
+        collected_aminos (list): List of collected aminoacids to keep track of the protein formation.
     '''
 
     def __init__(self):
@@ -34,7 +34,7 @@ class Snake(pygame.sprite.Sprite):
         Initializes the Snake instance with the head image and initial position.
         '''
 
-        self.original_image = pygame.image.load(os.path.join(MAIN_DIR, '../images/head.png'))
+        self.original_image = pygame.image.load(f'{MAIN_DIR}/../images/head.png')
         self.image = pygame.transform.rotate(self.original_image, 0)
         self.rect = self.image.get_rect(center=(12*32+16, 9*32+16))
         self.rect = self.image.get_rect(center=(12*32+16, 9*32+16))
@@ -43,6 +43,7 @@ class Snake(pygame.sprite.Sprite):
         self.last_position = self.rect
         self.add_segment = False
         self.segments = []
+        self.collected_aminos = []
 
     def change_direction(self, direction: Direction):
         
@@ -92,13 +93,14 @@ class Snake(pygame.sprite.Sprite):
             self.segments.append(new_segment)
             self.add_segment = False
 
-    def add_amino(self):
+    def add_amino(self, amino_name):
 
         '''
         Sets the flag to add a new segment to the snake.
         '''
 
         self.add_segment = True
+        self.collected_aminos.append(amino_name)
 
     def draw_segments(self, screen: pygame.Surface):
 
