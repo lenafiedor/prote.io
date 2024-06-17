@@ -22,4 +22,9 @@ cd path/to/prot.io
 They are as simple as possible. Move the snake with **W, A, S, D** keys and collect as many aminoacids as you can. The game engine is keeping track of them, so do not get distracted!<br>
 And, last but not least - remember not to bite your own tail.
 
+## Monitoring CPU usage
+This game has a built-in function used for monitoring CPU usage over the time. It is a decorator which tracks CPU usage every 1 second.<br>
+Exemplary results:
+![Very nice CPU plot](plots/cpu_usage.png)
+
 ## Have fun creating your own peptide! :shipit:
