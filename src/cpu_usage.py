@@ -48,7 +48,7 @@ def monitor_cpu_decorator(func):
         plt.ylabel('CPU Usage (%)')
         plt.grid(True)
         plt.tight_layout()
-        plt.savefig('../plots/cpu_usage.png')
+        plt.savefig('../plots/cpu_usage_3.png')
 
         return result
 

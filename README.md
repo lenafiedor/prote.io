@@ -10,6 +10,9 @@ pip install poetry
 poetry install
 ```
 
+> [!NOTE]
+> This game requires Python version 3.12.
+
 ## Running the game
 Once you've installed all necessary packages, it's time to play. To start the game, open the main prote.io directory and execute the script.
 
@@ -22,12 +25,21 @@ cd path/to/prote.io
 They are as simple as possible. Move the snake with **W, A, S, D** keys and collect as many aminoacids as you can. The game engine is keeping track of them, so do not get distracted!<br>
 And, last but not least - remember not to bite your own tail.
 
-## Monitoring CPU usage
+## Some statistics
+
+### Monitoring CPU usage
 This game has a built-in function used for monitoring CPU usage over the time. It is a decorator which tracks CPU usage every 1 second.<br>
-Exemplary results:
+Exemplary results for score 10 and estimated execution time of 30 seconds:
 ![Very nice CPU plot](plots/cpu_usage.png)
 
-## Bonus: actual time disposal
+Similar plots are available in the `plots` directory (respectively for results 4 and 1)
+
+### Histogram of survivability
+The following results were obtained from a study conducted on voluntary testers.
+![Survivability histogram](plots/survivability.png)
+
+### Bonus: actual time disposal
+Does not need a comment...
 ![Time disposal](plots/actual_time_disposal.png)
 
 ## Have fun creating your own peptide! :shipit:
