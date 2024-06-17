@@ -14,7 +14,7 @@ poetry install
 Once you've installed all necessary packages, it's time to play. To start the game, open the main prote.io directory and execute the script.
 
 ```
-cd path/to/prot.io
+cd path/to/prote.io
 ./snake_game.sh
 ```
 
