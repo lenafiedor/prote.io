@@ -30,7 +30,7 @@ And, last but not least - remember not to bite your own tail.
 ### Monitoring CPU usage
 This game has a built-in function used for monitoring CPU usage over the time. It is a decorator which tracks CPU usage every 1 second.<br>
 Exemplary results for score 10 and estimated execution time of 30 seconds:
-![Very nice CPU plot](plots/cpu_usage.png)
+![Very nice CPU plot](plots/cpu_usage_1.png)
 
 Similar plots are available in the `plots` directory (respectively for results 4 and 1)
 
