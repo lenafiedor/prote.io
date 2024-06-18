@@ -5,9 +5,32 @@ import matplotlib.pyplot as plt
 from threading import Thread, Event
 
 
-def monitor_cpu_usage(interval_sec):
+def monitor_cpu_usage(interval_sec: int) -> tuple[list[float], list[float], Thread, Event]:
     
-    def cpu_monitor(cpu_percentages, times, stop_monitor):
+    '''
+    Monitors the CPU usage at specified intervals.
+
+    Args:
+        interval_sec (int): Interval in seconds at which CPU usage is measured.
+
+    Returns:
+        Tuple[List[float], List[float], Thread, Event]: A tuple containing:
+            - List of CPU usage percentages
+            - List of timestamps corresponding to the CPU usage measurements
+            - Thread object running the CPU monitoring
+            - Event object to signal the monitoring thread to stop
+    '''
+
+    def cpu_monitor(cpu_percentages: list[float], times: list[float], stop_monitor: Event):
+
+        '''
+        Records CPU usage percentages and timestamps at regular intervals.
+
+        Args:
+            cpu_percentages (List[float]): List to store CPU usage percentages.
+            times (List[float]): List to store timestamps.
+            stop_monitor (Event): Event to signal when to stop monitoring.
+        '''
 
         start_time = time.perf_counter()
 
@@ -25,10 +48,31 @@ def monitor_cpu_usage(interval_sec):
 
     return cpu_percentages, times, monitor_thread, stop_monitor
 
-# custom decorator for CPU usage monitoring
-def monitor_cpu_decorator(func):
+
+def monitor_cpu_decorator(func: callable) -> callable:
+
+    '''
+    Decorator to monitor CPU usage while executing the decorated function.
+
+    Args:
+        func (Callable): The function to be decorated.
+
+    Returns:
+        Callable: The decorated function with CPU usage monitoring.
+    '''
 
     def wrapper(*args, **kwargs):
+
+        '''
+        Wrapper function to monitor CPU usage during the execution of the original function.
+
+        Args:
+            *args (Any): Positional arguments for the original function.
+            **kwargs (Any): Keyword arguments for the original function.
+
+        Returns:
+            Any: The result of the original function.
+        '''
 
         # start monitoring CPU usage
         cpu_percentages, times, monitor_thread, stop_monitor = monitor_cpu_usage(1)
